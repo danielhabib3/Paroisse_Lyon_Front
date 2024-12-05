@@ -9,4 +9,8 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'Paroisse_Lyon_Front';
+
+  constructor() {
+    console.log('AppComponent constructor');
+  }
 }
