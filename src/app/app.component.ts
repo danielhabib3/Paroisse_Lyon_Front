@@ -1,10 +1,11 @@
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { LoginComponent } from "./login/login.component";
 
 @Component({
   selector: 'app-root',
-  imports: [HttpClientModule],
+  imports: [HttpClientModule, LoginComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -14,7 +15,7 @@ export class AppComponent {
   constructor(private http: HttpClient) {}
   // Get on the server
   get() {
-    this.http.get('http://localhost:8080/api/hello', { responseType: 'text' }).subscribe((res: string) => {
+    this.http.get('http://localhost:8080/api', { responseType: 'text' }).subscribe((res: string) => {
       // convert the response to a string
       console.log(res);
     });
