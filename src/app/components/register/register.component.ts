@@ -3,6 +3,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-register',
@@ -22,12 +23,11 @@ export class RegisterComponent {
   emptyPassword: boolean = false;
   emptyTelephone: boolean = false;
   emptyRole: boolean = false;
-  emptyPasswordConfirmation: boolean = false;
   
   roles: Array<string> = [];
 
   
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private loginService: LoginService) {}
 
   ngOnInit(): void {
     this.getRoles(); // Call your function here
@@ -62,6 +62,30 @@ export class RegisterComponent {
   register(event: Event): void {
     event.preventDefault(); // Prevent the default form submission
 
+    if(this.username === '') {
+      this.emptyUsername = true;
+    }
+
+    if(this.password === '') {
+      this.emptyPassword = true;
+    }
+
+    if(this.telephone === '') {
+      this.emptyTelephone = true;
+    }
+
+    if(this.role === '') {
+      this.emptyRole = true;
+    }
+
+    if(this.password === '') {
+      this.emptyPassword = true;
+    }
+
+    if(this.emptyUsername || this.emptyPassword || this.emptyTelephone || this.emptyRole) {
+      return;
+    }
+
     const formData = new FormData();
     formData.append('username', this.username);
     formData.append('password', this.password);
@@ -74,6 +98,14 @@ export class RegisterComponent {
         next: (response: any) => {
           console.log('Register successful:', response);
           // Handle successful login (e.g., save token, navigate to another page)
+          switch (JSON.parse(response).message) {
+            case 'User registered successfully':
+              this.loginService.setUser(JSON.parse(response).user);
+              this.router.navigate([`/home`]);
+              break;
+            case "User already exists":
+              break;
+          }
         },
         error: (error: any) => {
           console.error('Register failed:', error);
@@ -84,5 +116,14 @@ export class RegisterComponent {
 
   redirectToLogin(): void {
     this.router.navigate([`/`]);
+  }
+
+  validateFrenchPhoneNumber(phoneNumber: string): boolean {
+    // Regular expression for validating French phone numbers
+    const regex = /^0[67]{1}[0-9]{8}$/;
+    console.log(regex.test(phoneNumber));
+  
+    // Check if the phone number matches the regex
+    return regex.test(phoneNumber);
   }
 }

@@ -1,97 +1,94 @@
-<div class="flex justify-center items-center space-x-64 h-screen">
+<div class="flex flex-col lg:flex-row justify-center items-center space-y-8 lg:space-y-0 lg:space-x-8 h-screen p-4 overflow-hidden">
 
-    <!-- Anba Loka -->
-    <div class="w-80 h-80 text-white flex justify-center items-center">
-        <img src="anba-louka.jpg" alt="eveque">
-    </div>
-    
-    <!-- Login Form -->
-    <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-        <div class="bg-white/70 rounded-lg shadow-2xl p-8 mx-auto max-w-md lg:max-w-2xl">
-            <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-                <img class="mx-auto h-10 w-auto" src="cross.svg" alt="Your Company">
-                <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">Sign in to your account</h2>
+  <!-- Anba Loka -->
+  <div class="w-40 h-40 lg:w-80 lg:h-80 text-white flex justify-center items-center">
+    <img src="anba-louka.jpg" alt="eveque" class="w-full h-full object-contain">
+  </div>
+  
+  <!-- Login Form -->
+  <div class="flex flex-col justify-center px-6 py-12 lg:px-8 w-full max-w-md lg:max-w-lg">
+    <div class="bg-white/70 rounded-lg shadow-2xl p-8 mx-auto w-full">
+      <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+        <img class="mx-auto h-10 w-auto" src="cross.svg" alt="Your Company">
+        <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">Sign in to your account</h2>
+      </div>
+      
+      <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+        <form class="space-y-6" id="loginForm" (submit)="login($event)">
+          <div>
+            <label for="username" class="block text-sm/6 font-medium text-gray-900">User Name</label>
+            <div class="mt-2">
+              <input type="username" (ngModelChange)="emptyUsername = false" name="username" id="username" [(ngModel)]="username" autocomplete="username" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+              <div *ngIf="emptyUsername" class="text-red-500 text-sm">Username is required</div>
             </div>
-            
-            <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                <form class="space-y-6" id="loginForm" (submit)="login($event)">
-                  <div>
-                    <label for="username" class="block text-sm/6 font-medium text-gray-900">User Name</label>
-                    <div class="mt-2">
-                      <input type="username" (ngModelChange)="emptyUsername = false" name="username" id="username" [(ngModel)]="username" autocomplete="username" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
-                      <div *ngIf="emptyUsername" class="text-red-500 text-sm">Username is required</div>
-                    </div>
-                  </div>
-            
-                  
-                  <div>
-                    <div class="flex items-center justify-between">
-                      <label for="password" class="block text-sm/6 font-medium text-gray-900">Password</label>
-                      <div class="text-sm">
-                        <a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</a>
-                      </div>
-                    </div>
-                    <div class="relative mt-2">
-                      <!-- Password Input -->
-                      <input 
-                        type="password" 
-                        name="password" 
-                        id="password"
-                        (ngModelChange)="emptyPassword = false"
-                        [(ngModel)]="password" 
-                        class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 pr-10"
-                      >
-                      <div *ngIf="emptyPassword" class="text-red-500 text-sm">Password is required</div>
-                      <!-- Eye Icon -->
-                      <button 
-                        type="button" 
-                        class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600"
-                        (click)="togglePasswordVisibility()"
-                      >
-                        <svg 
-                          *ngIf="isPasswordVisible" 
-                          xmlns="http://www.w3.org/2000/svg" 
-                          fill="none" 
-                          viewBox="0 0 24 24" 
-                          stroke-width="1.5" 
-                          stroke="currentColor" 
-                          class="h-5 w-5"
-                        >
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.758a10.323 10.323 0 0116.04 0M21 12a10.325 10.325 0 01-17.9 2.234M9.75 12a2.25 2.25 0 114.5 0 2.25 2.25 0 01-4.5 0z" />
-                        </svg>
-                        <svg 
-                          *ngIf="!isPasswordVisible" 
-                          xmlns="http://www.w3.org/2000/svg" 
-                          fill="none" 
-                          viewBox="0 0 24 24" 
-                          stroke-width="1.5" 
-                          stroke="currentColor" 
-                          class="h-5 w-5"
-                        >
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M3 3l18 18m-4.848-4.848A10.325 10.325 0 0112 18c-4.62 0-8.55-2.92-10-7a10.307 10.307 0 012.114-3.152M12 6a10.307 10.307 0 014.848 1.152M12 6a2.25 2.25 0 00-4.5 0 2.25 2.25 0 004.5 0z" />
-                        </svg>
-                      </button>
-                    </div>
-                  </div>
-            
-                  <div>
-                    <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
-                  </div>
-                </form>
-            
-                <p class="mt-10 text-center text-sm/6 text-gray-500">
-                  Not a member?
-                  <a (click)="redirectToRegister()" class="font-semibold text-indigo-600 hover:text-indigo-500 cursor-pointer">Register</a>
-                </p>
+          </div>
+          
+          <div>
+            <div class="flex items-center justify-between">
+              <label for="password" class="block text-sm/6 font-medium text-gray-900">Password</label>
+              <div class="text-sm">
+                <a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</a>
+              </div>
             </div>
-        </div>
+            <div class="relative mt-2">
+              <!-- Password Input -->
+              <input 
+                type="password" 
+                name="password" 
+                id="password"
+                (ngModelChange)="emptyPassword = false"
+                [(ngModel)]="password" 
+                class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 pr-10"
+              >
+              <div *ngIf="emptyPassword" class="text-red-500 text-sm">Password is required</div>
+              <!-- Eye Icon -->
+              <button 
+                type="button" 
+                class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600"
+                (click)="togglePasswordVisibility()"
+              >
+                <svg 
+                  *ngIf="isPasswordVisible" 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  fill="none" 
+                  viewBox="0 0 24 24" 
+                  stroke-width="1.5" 
+                  stroke="currentColor" 
+                  class="h-5 w-5"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.758a10.323 10.323 0 0116.04 0M21 12a10.325 10.325 0 01-17.9 2.234M9.75 12a2.25 2.25 0 114.5 0 2.25 2.25 0 01-4.5 0z" />
+                </svg>
+                <svg 
+                  *ngIf="!isPasswordVisible" 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  fill="none" 
+                  viewBox="0 0 24 24" 
+                  stroke-width="1.5" 
+                  stroke="currentColor" 
+                  class="h-5 w-5"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 3l18 18m-4.848-4.848A10.325 10.325 0 0112 18c-4.62 0-8.55-2.92-10-7a10.307 10.307 0 012.114-3.152M12 6a10.307 10.307 0 014.848 1.152M12 6a2.25 2.25 0 00-4.5 0 2.25 2.25 0 004.5 0z" />
+                </svg>
+              </button>
+            </div>
+          </div>
+      
+          <div>
+            <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
+          </div>
+        </form>
+      
+        <p class="mt-10 text-center text-sm/6 text-gray-500">
+          Not a member?
+          <a (click)="redirectToRegister()" class="font-semibold text-indigo-600 hover:text-indigo-500 cursor-pointer">Register</a>
+        </p>
+      </div>
     </div>
+  </div>
 
-    <!-- Pape Twadros II -->
-    <div class="w-80 h-80 text-white flex justify-center items-center">
-        <img src="baba-tawadros.jpeg" alt="eveque">
-    </div>
+  <!-- Pape Twadros II -->
+  <div class="w-40 h-40 lg:w-80 lg:h-80 text-white flex justify-center items-center">
+    <img src="baba-tawadros.jpeg" alt="eveque" class="w-full h-full object-contain">
+  </div>
 
 </div>
-
-  
