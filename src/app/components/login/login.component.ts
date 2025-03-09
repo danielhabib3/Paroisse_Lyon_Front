@@ -56,8 +56,15 @@ export class LoginComponent {
           // Handle successful login (e.g., save token, navigate to another page)
           switch (JSON.parse(response).message) {
             case 'Login successful':
-              this.loginService.setUser(JSON.parse(response).user);
-              this.router.navigate([`/home`]);
+              let user = JSON.parse(response).user;
+              console.log(user.roles);
+              this.loginService.setUser(user);
+              if(user.roles === 'chef') {
+                this.router.navigate([`/orders`]);
+              }
+              else {
+                this.router.navigate([`/home`]);
+              }
               break;
             case "User doesn't exist":
               break;

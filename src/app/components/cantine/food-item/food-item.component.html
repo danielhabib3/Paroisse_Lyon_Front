@@ -1,0 +1,26 @@
+<div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <div style="display: flex; width: 50%; border: 1px solid #ccc; padding: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+        <div style="flex: 1;">
+            <img src="burger.png" alt="Food Item">
+        </div>
+        <!-- The food options as check boxes -->
+        <div style="flex: 1;">
+            <h3>Options</h3>
+            <div *ngFor="let optionGroup of foodItem.foodOptions">
+                <h4>{{ optionGroup.name }}</h4>
+                <div *ngFor="let option of optionGroup.options">
+                    <input type="checkbox" id="{{ option }}" name="{{ option }}">
+                    <label for="{{ option }}">{{ option }}</label><br>
+                </div>
+            </div>
+        </div>
+        
+        <div style="flex: 2;">
+            <h2>{{foodItem.type}} {{foodItem.name}}</h2>
+            <p>Price: {{foodItem.price}}</p>
+            <button style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Add to Cart</button>
+        </div>
+        <div style="flex: 2;">
+        </div>
+    </div>
+</div>
