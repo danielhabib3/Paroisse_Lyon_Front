@@ -4,7 +4,7 @@
       <li *ngFor="let item of foodItems" class="bg-white rounded-lg shadow-lg w-72 mx-auto" (click)="openItem(item)">
         <img [src]="item.name + '.svg'" [alt]="item.name" class="rounded-t-lg w-full h-56 object-contain">
         <div class="p-4">
-          <h2 class="text-xl font-semibold">{{ item.name }}</h2>
+          <h2 class="text-xl font-semibold">{{ item.type }} {{ item.name }}</h2>
           <div class="mt-4">
             <span class="text-xl font-semibold">{{ item.price }}€</span>
           </div>
@@ -13,10 +13,4 @@
     </ul>
 </div>
 
-<!-- The cart -->
-<div class="flex justify-center mt-4" *ngIf="numberOfItemsCart > 0">
-  <button class="bg-yellow-800 text-white px-6 py-3 rounded-full shadow-lg hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:ring-opacity-50 text-lg" (click)="openCart()">
-      <img src="cart.svg" alt="Cart" class="inline-block mr-2 w-6 h-6">
-      View Cart ({{numberOfItemsCart}})
-  </button>
-</div>
+

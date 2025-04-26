@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { FoodItem } from '../../../model/food-item';
-import { FoodOption } from '../../../model/food-option';
+import { FoodItem } from '../../../../model/food-item';
+import { FoodOption } from '../../../../model/food-option';
 
 
 @Component({
@@ -16,13 +16,12 @@ export class FoodMenuComponent implements OnInit {
   // Initial list of food items
   foodItems: FoodItem[] = [];
 
-  numberOfItemsCart: number = 1;
 
   constructor(private http: HttpClient, private router: Router) {}
 
 
   openItem(item: FoodItem) {
-    this.router.navigate(['/home/food-item'], { 
+    this.router.navigate(['/home/cantine/food-item'], { 
       queryParams: { item: JSON.stringify(item) },
       queryParamsHandling: 'merge'
     });
@@ -42,7 +41,5 @@ export class FoodMenuComponent implements OnInit {
       });
   }
 
-  openCart() {
-    this.router.navigate(['/home/cart']);
-  }
+  
 }

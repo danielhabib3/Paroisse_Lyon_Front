@@ -100,7 +100,7 @@ export class RegisterComponent {
           // Handle successful login (e.g., save token, navigate to another page)
           switch (JSON.parse(response).message) {
             case 'User registered successfully':
-              this.loginService.setUser(JSON.parse(response).user);
+              this.loginService.login(JSON.parse(response).user);
               this.router.navigate([`/home`]);
               break;
             case "User already exists":

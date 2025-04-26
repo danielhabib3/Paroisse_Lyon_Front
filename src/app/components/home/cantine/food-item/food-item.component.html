@@ -18,7 +18,7 @@
         <div style="flex: 2;">
             <h2>{{foodItem.type}} {{foodItem.name}}</h2>
             <p>Price: {{foodItem.price}}</p>
-            <button style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Add to Cart</button>
+            <button (click)="addToCart()" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Add to Cart</button>
         </div>
         <div style="flex: 2;">
         </div>

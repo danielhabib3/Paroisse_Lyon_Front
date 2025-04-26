@@ -6,13 +6,27 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class LoginService {
 
-  private userSubject = new BehaviorSubject<any>(null);  // Initialize with null
+  private userSubject = new BehaviorSubject<any>(null); // initially null
+  user$ = this.userSubject.asObservable(); // Observable for components to subscribe to
 
-  // Observable to share user data
-  user$ = this.userSubject.asObservable();
+  constructor() {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      this.userSubject.next(JSON.parse(storedUser));
+    }
+  }
 
-  // Set the user data
-  setUser(user: any) {
+  login(user: any) {
     this.userSubject.next(user);
+    localStorage.setItem('user', JSON.stringify(user));
+  }
+
+  logout() {
+    this.userSubject.next(null);
+    localStorage.removeItem('user');
+  }
+
+  getUserValue() {
+    return this.userSubject.value;
   }
 }

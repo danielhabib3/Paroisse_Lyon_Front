@@ -58,7 +58,7 @@ export class LoginComponent {
             case 'Login successful':
               let user = JSON.parse(response).user;
               console.log(user.roles);
-              this.loginService.setUser(user);
+              this.loginService.login(user);
               if(user.roles === 'chef') {
                 this.router.navigate([`/orders`]);
               }

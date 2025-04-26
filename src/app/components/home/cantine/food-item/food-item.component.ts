@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FoodItem } from '../../../model/food-item';
+import { FoodItem } from '../../../../model/food-item';
 import { CommonModule } from '@angular/common';
-import { FoodOption } from '../../../model/food-option';
+import { FoodOption } from '../../../../model/food-option';
 
 
 @Component({
@@ -31,6 +31,10 @@ export class FoodItemComponent {
           this.foodItem.foodOptions = foodOptionsTemp;
       }
     });
+  }
+
+  addToCart() {
+    
   }
 
 }
